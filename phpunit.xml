@@ -1,18 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit
-        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-        xsi:schemaLocation="https://schema.phpunit.de/10.5/phpunit.xsd https://schema.phpunit.de/10.5/phpunit-10.5.xsd"
-        bootstrap="vendor/autoload.php"
-        colors="true"
-        verbose="true"
-        stopOnFailure="false"
->
-    <coverage processUncoveredFiles="true">
-        <include>
-            <directory suffix=".php">./src</directory>
-        </include>
-        <exclude>
-            <directory suffix=".php">./tests</directory>
-        </exclude>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="https://schema.phpunit.de https://schema.phpunit.de/phpunit-10.5.xsd">
+    <coverage>
+        <clover outputFile="coverage.xml" />
     </coverage>
+
+    <testsuites>
+        <testsuite name="Application Test Suite">
+            <directory>./tests</directory>
+        </testsuite>
+    </testsuites>
 </phpunit>
