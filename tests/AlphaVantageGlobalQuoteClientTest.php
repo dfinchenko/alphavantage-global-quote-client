@@ -8,9 +8,11 @@ use GuzzleHttp\Handler\MockHandler;
 use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
 use PHPUnit\Framework\TestCase;
+use PHPUnit\Framework\Attributes\CoversMethod;
 
 class AlphaVantageGlobalQuoteClientTest extends TestCase
 {
+    #[CoversMethod(AlphaVantageGlobalQuoteClient::class, 'getQuote')]
     public function testGetQuoteReturnsParsedData()
     {
         $mockResponseBody = [
@@ -36,6 +38,7 @@ class AlphaVantageGlobalQuoteClientTest extends TestCase
         $this->assertSame('145.00', $quote['05. price']);
     }
 
+    #[CoversMethod(AlphaVantageGlobalQuoteClient::class, 'getQuote')]
     public function testThrowsWhenResponseIsInvalid()
     {
         $mock = new MockHandler([
@@ -50,6 +53,7 @@ class AlphaVantageGlobalQuoteClientTest extends TestCase
         $client->getQuote('IBM');
     }
 
+    #[CoversMethod(AlphaVantageGlobalQuoteClient::class, 'getQuote')]
     public function testThrowsOnNon200Response()
     {
         $mock = new MockHandler([
