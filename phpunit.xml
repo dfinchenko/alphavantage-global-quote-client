@@ -1,20 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="https://schema.phpunit.de https://schema.phpunit.de/phpunit-12.xsd">
+         xsi:schemaLocation="https://schema.phpunit.de https://schema.phpunit.de/phpunit-10.5.xsd"
+         bootstrap="vendor/autoload.php"
+         colors="true"
+         stopOnFailure="false">
 
     <testsuites>
-        <testsuite name="Feature">
-            <directory suffix="Test.php">./tests</directory>
+        <testsuite name="Unit">
+            <directory suffix="Test.php">tests</directory>
         </testsuite>
     </testsuites>
 
-    <coverage processUncoveredFiles="false">
+    <coverage processUncoveredFiles="true">
         <include>
-            <directory suffix=".php">./app</directory>
+            <directory suffix=".php">src</directory>
         </include>
-        <exclude>
-            <directory suffix=".php">./tests</directory>
-        </exclude>
     </coverage>
-
 </phpunit>

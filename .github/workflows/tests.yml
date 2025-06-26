@@ -1,29 +1,20 @@
-name: PHP Unit Tests
-
-on: [push]
-
+name: PHP Unit Tests Codecov
+on: [push, pull_request]
 jobs:
-  test:
+  run:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-
-      - name: Set up PHP
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up php 8.3
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.3'
-          extensions: mbstring, xml
-
       - name: Install dependencies
-        run: |
-          composer install --no-interaction
-
-      - name: Run PHPUnit tests with code coverage
-        run: ./vendor/bin/phpunit --coverage-clover=coverage.xml
-
+        run: composer self-update && composer install && composer dump-autoload
+      - name: Run tests and collect coverage
+        run: vendor/bin/phpunit --coverage-clover coverage.xml .
       - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v3
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
-          file: coverage.xml
+        uses: codecov/codecov-action@v5
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
