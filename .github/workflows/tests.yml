@@ -1,37 +1,29 @@
-name: PHPUnit CI
+name: PHP Unit Tests
 
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+on: [push]
 
 jobs:
-  phpunit:
+  test:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
       - name: Set up PHP
         uses: shivammathur/setup-php@v2
         with:
           php-version: '8.3'
+          extensions: mbstring, xml
 
       - name: Install dependencies
         run: |
-          composer install --no-interaction --prefer-dist
+          composer install --no-interaction
 
-      - name: Run PHPUnit tests
-        run: |
-          ./vendor/bin/phpunit --coverage-clover=coverage.xml
+      - name: Run PHPUnit tests with code coverage
+        run: ./vendor/bin/phpunit --coverage-clover=coverage.xml
 
-      - name: Upload coverage reports to Codecov
-        uses: codecov/codecov-action@v5
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v3
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          file: ./coverage.xml
-          fail_ci_if_error: true
+          file: coverage.xml

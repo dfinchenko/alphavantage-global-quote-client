@@ -1,15 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="https://schema.phpunit.de https://schema.phpunit.de/phpunit-10.5.xsd">
+         xsi:schemaLocation="https://schema.phpunit.de https://schema.phpunit.de/phpunit-12.xsd">
+
     <testsuites>
         <testsuite name="Feature">
             <directory suffix="Test.php">./tests</directory>
         </testsuite>
     </testsuites>
 
-    <coverage>
+    <coverage processUncoveredFiles="false">
         <include>
             <directory suffix=".php">./app</directory>
         </include>
+        <exclude>
+            <directory suffix=".php">./tests</directory>
+        </exclude>
     </coverage>
+
 </phpunit>
