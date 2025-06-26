@@ -1,6 +1,6 @@
 <?php
 
-namespace Dfinchenko\AlphaVantageClient\Tests;
+namespace Dfinchenko\AlphaVantageGlobalQuoteClient\Tests;
 
 use Dfinchenko\AlphaVantageGlobalQuoteClient\AlphaVantageGlobalQuoteClient;
 use GuzzleHttp\Client;
