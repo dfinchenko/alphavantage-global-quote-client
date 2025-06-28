@@ -32,9 +32,10 @@ To use the AlphaVantageGlobalQuoteClient, first install the package via Composer
 
 ```php
 use Alphavantage\AlphaVantageGlobalQuoteClient;
-
+// Guzzle HTTP client
+$httpClient = new Client();
 // Initialize the client with your API key
-$client = new AlphaVantageGlobalQuoteClient('your_api_key');
+$client = new AlphaVantageGlobalQuoteClient('your_api_key', $httpClient);
 
 // Fetch the quote for a stock symbol (e.g., AAPL)
 $quote = $client->getQuote('AAPL');
