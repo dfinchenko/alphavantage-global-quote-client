@@ -6,7 +6,7 @@ use GuzzleHttp\ClientInterface;
 use GuzzleHttp\Exception\GuzzleException;
 use RuntimeException;
 
-final class AlphaVantageGlobalQuoteClient
+final class AlphaVantageGlobalQuoteClient implements AlphaVantageGlobalQuoteClientInterface
 {
     private const string BASE_URL = 'https://www.alphavantage.co/query';
 
